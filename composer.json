@@ -1,5 +1,5 @@
 {
-    "name": "nurmuhammet/helpers",
+    "name": "nurmuhammet/laravel-helpers",
     "description": "Laravel Helpers that make life a better place to live by saving time, energy & nerves",
     "type": "metapackage",
     "autoload": {

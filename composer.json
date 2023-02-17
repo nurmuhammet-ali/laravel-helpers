@@ -1,0 +1,23 @@
+{
+    "name": "nurmuhammet/helpers",
+    "description": "Laravel Helpers that make life a better place to live by saving time, energy & nerves",
+    "type": "metapackage",
+    "autoload": {
+        "psr-4": {
+            "Nurmuhammet\\Helpers\\": "src/"
+        },
+        "files": [
+          "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Nurmuhammet Allanov",
+            "email": "nurmuhammet@mail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^10.0",
+        "illuminate/routing": "^10.0"
+    }
+}

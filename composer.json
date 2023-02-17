@@ -2,6 +2,7 @@
     "name": "nurmuhammet/laravel-helpers",
     "description": "Laravel Helpers that make life a better place to live by saving time, energy & nerves",
     "type": "metapackage",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Nurmuhammet\\Helpers\\": "src/"

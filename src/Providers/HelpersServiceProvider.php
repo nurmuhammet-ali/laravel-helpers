@@ -29,7 +29,7 @@ class HelpersServiceProvider extends ServiceProvider
 	     *
 	     * @return void
 	     */
-		Response::macro('rest', function (array $data = [], int $status_code = 200, string $message = 'success') {
+		Response::macro('rest', function (mixed $data = [], int $status_code = 200, string $message = 'success') {
             return response()->json(['message' => $message, 'data' => $data], $status_code);
         });
 

@@ -36,12 +36,12 @@ if (! function_exists('round_up')) {
      * round_up(2.335, 4) -> 2.335
      * round_up(2.335, 3) -> 2.34
      * 
-     * @param integer|float|double $number
+     * @param int|float $number
      * @param int $precision
      *
      * @return float
      */
-    function round_up(integer|float|double $number, int $precision = 2): float
+    function round_up(int|float $number, int $precision = 2): float
     {
         $fig = (int) str_pad('1', $precision, '0');
         return (ceil($number * $fig) / $fig);

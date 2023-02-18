@@ -3,6 +3,7 @@
     "description": "Laravel Helpers that make life a better place to live by saving time, energy & nerves",
     "type": "metapackage",
     "license": "MIT",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Nurmuhammet Allanov",

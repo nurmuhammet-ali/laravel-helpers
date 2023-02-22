@@ -79,6 +79,17 @@ class HelpersServiceProvider extends ServiceProvider
 
             return $this;
         });
+
+        /**
+	     * Get all attributes for Model
+	     * 
+	     * Model::allAttributes() -> ['id', 'name', ...]
+	     *
+	     * @return array
+	     */
+		Builder::macro('allAttributes', function ($field, $order = 'asc', $locale = null) {
+            return Schema::getColumnListing((new $this->model)->getTable());
+        });
 	}
 
 	public function setAuthorizationHelpers(): void
@@ -90,7 +101,6 @@ class HelpersServiceProvider extends ServiceProvider
 	     *
 	     * @return \Illuminate\Database\Eloquent\Builder
 	     */
-		
 		Gate::define('is-me', fn ($user) => $user->email == 'nurmuhammet@mail.com');
 	}
 }

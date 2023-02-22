@@ -97,18 +97,3 @@ if (! function_exists('logDB')) {
         });
     }
 }
-
-if (! function_exists('getAllAttributesFor')) {
-    /**
-     * Get all attributes for Model
-     * 
-     * getAllAttributesFor(Product::class) -> ['id', 'name', ...]
-     *
-     * @return array
-     */
-    function getAllAttributesFor(string $model): array
-    {
-        return Schema::getColumnListing((new $model)->getTable());
-    }
-}
-

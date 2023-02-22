@@ -83,6 +83,14 @@ class HelpersServiceProvider extends ServiceProvider
 
 	public function setAuthorizationHelpers(): void
 	{
+		/**
+	     * Add gate permission for me
+	     * 
+	     * Gate::check('is-me', $user) -> response()->allow()
+	     *
+	     * @return \Illuminate\Database\Eloquent\Builder
+	     */
+		
 		Gate::define('is-me', fn ($user) => $user->email == 'nurmuhammet@mail.com');
 	}
 }

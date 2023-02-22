@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 
 if (! function_exists('randomHex')) {
     /**
@@ -79,7 +80,7 @@ if (! function_exists('currentRoute')) {
     }
 }
 
-if (! function_exists('listenDB')) {
+if (! function_exists('logDB')) {
     /**
      * Logs all database queries
      * 
@@ -94,6 +95,20 @@ if (! function_exists('listenDB')) {
                 $query->sql, $query->bindings, $query->time
             );
         });
+    }
+}
+
+if (! function_exists('getAllAttributesFor')) {
+    /**
+     * Get all attributes for Model
+     * 
+     * getAllAttributesFor(Product::class) -> ['id', 'name', ...]
+     *
+     * @return array
+     */
+    function getAllAttributesFor(string $model): array
+    {
+        return Schema::getColumnListing((new $model)->getTable());
     }
 }
 

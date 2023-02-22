@@ -88,9 +88,7 @@ class HelpersServiceProvider extends ServiceProvider
 	     *
 	     * @return array
 	     */
-		Builder::macro('allAttributes', function () {
-            return Schema::getColumnListing((new $this->model)->getTable());
-        });
+		Builder::macro('allAttributes', fn () => Schema::getColumnListing((new $this->model)->getTable()));
 	}
 
 	public function setAuthorizationHelpers(): void

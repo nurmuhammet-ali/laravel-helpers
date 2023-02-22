@@ -86,9 +86,16 @@ class HelpersServiceProvider extends ServiceProvider
 	     *
 	     * @return string
 	     */
-		Builder::macro('tableName', function (): string {
-			return(new $this->model)->getTable();
-		});
+		Builder::macro('tableName', fn (): string => (new $this->model)->getTable());
+
+		/**
+	     * Get table coloumns for model
+	     * 
+	     * Post::getColumns() -> posts
+	     *
+	     * @return array
+	     */
+		Builder::macro('getColumns', fn (): array => Schema::getColumnListing((new $this->model)->getTable()));
 	}
 
 	public function setAuthorizationHelpers(): void

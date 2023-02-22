@@ -5,6 +5,7 @@ namespace Nurmuhammet\Helpers\Providers;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class HelpersServiceProvider extends ServiceProvider

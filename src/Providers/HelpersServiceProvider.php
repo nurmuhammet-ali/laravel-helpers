@@ -87,7 +87,7 @@ class HelpersServiceProvider extends ServiceProvider
 	     *
 	     * @return array
 	     */
-		Builder::macro('allAttributes', function ($field, $order = 'asc', $locale = null) {
+		Builder::macro('allAttributes', function () {
             return Schema::getColumnListing((new $this->model)->getTable());
         });
 	}

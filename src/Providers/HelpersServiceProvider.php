@@ -4,10 +4,7 @@ namespace Nurmuhammet\Helpers\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Contracts\Pagination\Paginator;
 
 class HelpersServiceProvider extends ServiceProvider
 {
@@ -88,7 +85,9 @@ class HelpersServiceProvider extends ServiceProvider
 	     *
 	     * @return string
 	     */
-		Builder::macro('tableName', fn () => (new $this->model)->getTable());
+		Builder::macro('tableName', function (): string {
+			return(new $this->model)->getTable();
+		});
 	}
 
 	public function setAuthorizationHelpers(): void

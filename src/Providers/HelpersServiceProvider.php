@@ -80,6 +80,15 @@ class HelpersServiceProvider extends ServiceProvider
 
             return $this;
         });
+
+        /**
+	     * Get table name for model
+	     * 
+	     * Post::tableName() -> posts
+	     *
+	     * @return string
+	     */
+		Builder::macro('tableName', fn () => (new $this->model)->getTable());
 	}
 
 	public function setAuthorizationHelpers(): void

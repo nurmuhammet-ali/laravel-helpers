@@ -40,29 +40,29 @@ logDB() # main .log file should log all db queries, run this function inside App
 ## Helper Macros
 ```php
 # Makes json responses more clean, pragmatic
-rest(mixed $data = [], int $status_code = 200, string $message = 'success')
+Response::rest(mixed $data = [], int $status_code = 200, string $message = 'success')
 # Example:
 response()->rest(Post::all())
 response()->rest([], 201)
 response()->rest([], 201, 'created resource')
 
 # Makes json paginated responses more clean, pragmatic
-rest_paginate(mixed $data, int $status_code = 200, string $message = 'success')
+Response::rest_paginate(mixed $data, int $status_code = 200, string $message = 'success')
 # Example:
 response()->rest_paginate(Post::paginate(20))
 
 # Provides ordering by translations for spatie translatable, supported databases: ['postgres']
-orderByTranslation($field, $order = 'asc', $locale = null): Illuminate\Database\Eloquent\Builder
+Moodel::orderByTranslation($field, $order = 'asc', $locale = null): Illuminate\Database\Eloquent\Builder
 # Example:
 Post::orderByTranslation()->get()
 
 # Get table name statically for model
-tableName(): string
+Moodel::tableName(): string
 # Example
 Product::tableName() // 'products'
 
 # Get table coloumns for model
-getColumns(): array
+Moodel::getColumns(): array
 # Example
 Post::getColumns() # ['id', 'name', 'slug', ...]
 ```

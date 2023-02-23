@@ -3,6 +3,7 @@
 namespace Nurmuhammet\Helpers\Providers;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Schema;
@@ -90,13 +91,19 @@ class HelpersServiceProvider extends ServiceProvider
 		Builder::macro('tableName', fn (): string => (new $this->model)->getTable());
 
 		/**
-	     * Get table coloumns for model
+	     * Get table coloumns for model, caches the result for 5 minutes by default
 	     * 
 	     * Post::getColumns() -> ['id', 'name', 'slug', ...]
+	     * Post::getColumns(cache: false) -> ['id', 'name', 'slug', ...]
+	     * * Post::getColumns(cacheSeconds: false) -> ['id', 'name', 'slug', ...]
 	     *
 	     * @return array
 	     */
-		Builder::macro('getColumns', fn (): array => Schema::getColumnListing((new $this->model)->getTable()));
+		Builder::macro('getColumns', function (bool $cache = true, int $cacheSeconds = 60 * 5): array {
+			$tableName = (new $this->model)->getTable();
+
+			return Cache::remember('table_'.$tableName, $cacheSeconds, fn () => Schema::getColumnListing($tableName));
+		});
 	}
 
 	public function setAuthorizationHelpers(): void

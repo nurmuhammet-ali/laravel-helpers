@@ -95,7 +95,7 @@ class HelpersServiceProvider extends ServiceProvider
 	     * 
 	     * Post::getColumns() -> ['id', 'name', 'slug', ...]
 	     * Post::getColumns(cache: false) -> ['id', 'name', 'slug', ...]
-	     * * Post::getColumns(cacheSeconds: false) -> ['id', 'name', 'slug', ...]
+	     * Post::getColumns(cacheSeconds: false) -> ['id', 'name', 'slug', ...]
 	     *
 	     * @return array
 	     */

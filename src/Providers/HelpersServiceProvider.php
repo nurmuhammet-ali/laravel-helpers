@@ -92,7 +92,7 @@ class HelpersServiceProvider extends ServiceProvider
 		/**
 	     * Get table coloumns for model
 	     * 
-	     * Post::getColumns() -> posts
+	     * Post::getColumns() -> ['id', 'name', 'slug', ...]
 	     *
 	     * @return array
 	     */

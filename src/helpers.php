@@ -24,6 +24,21 @@ if (! function_exists('randomHex')) {
     }
 }
 
+if (! function_exists('number_is_between')) {
+    /**
+     * Check if number is between range
+     * 
+     * Exmaple:
+     * number_is_between(61929248, 61000000, 65999999) -> true
+     * 
+     * @return bool
+     */
+    function number_is_between($number, $min, $max): bool
+    {
+        return ($min <= $number) && ($number <= $max);
+    }
+}
+
 if (! function_exists('round_up')) {
     /**
      * Rounds number up

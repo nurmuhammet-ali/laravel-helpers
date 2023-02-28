@@ -62,7 +62,7 @@ Moodel::tableName(): string
 Product::tableName() // 'products'
 
 # Get table coloumns for model, caches the result for 5 minutes by default
-Moodel::getColumns(): array
+Model::getColumns(): array
 # Example
 Post::getColumns() # ['id', 'name', 'slug', ...]
 Post::getColumns(cache: false)

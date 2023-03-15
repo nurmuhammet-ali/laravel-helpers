@@ -33,7 +33,7 @@ if (! function_exists('number_is_between')) {
      * 
      * @return bool
      */
-    function number_is_between($number, $min, $max): bool
+    function number_is_between(int $number, int $min, int $max): bool
     {
         return ($min <= $number) && ($number <= $max);
     }

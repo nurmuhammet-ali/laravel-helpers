@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class HelpersServiceProvider extends ServiceProvider
 {
@@ -79,6 +80,29 @@ class HelpersServiceProvider extends ServiceProvider
             }
 
             return $this;
+        });
+
+        /**
+	     * Helps to paginate by raw query, but make sure count named "aggregate"
+	     * 
+	     * Post::paginateRawQuery("select * from posts", ...)
+	     *
+	     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+	     */
+	    Builder::macro('paginateRawQuery', function (string $rawQuery, ?int $perPage = null, array $columns = ['*'], string $pageName = 'page', ?int $page = null) {
+        	$page = $page ?: Paginator::resolveCurrentPage($pageName);
+
+	        $perPage = $perPage ?: $this->model->getPerPage();
+
+	        $total = DB::select($rawQuery)[0]->aggregate;
+	        $results = $total 
+	        			? $this->forPage($page, $perPage)->get($columns)
+						: $this->model->newCollection();
+
+	        return $this->paginator($results, $total, $perPage, $page, [
+	            'path' => Paginator::resolveCurrentPath(),
+	            'pageName' => $pageName,
+	        ]);    
         });
 
         /**

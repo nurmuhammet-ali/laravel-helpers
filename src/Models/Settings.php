@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Settings extends Model
 {
@@ -15,7 +16,7 @@ class Settings extends Model
     public const BN = 'bn';
     public const DZ = 'dz';
 
-    public static function regions() 
+    public static function regions(): array
     {
         return [
             self::AG => 'Aşgabat',
@@ -39,7 +40,7 @@ class Settings extends Model
     public const I_DZ = 'I-DZ';
     public const II_DZ = 'II-DZ';
 
-    public static function passport_series() 
+    public static function passport_series(): array 
     {
         return [
             self::I_AS => self::I_AS,
@@ -95,9 +96,10 @@ class Settings extends Model
         return [
             self::PENDING => 'warning',
             self::REGISTER => 'info',
+            self::IN_PROGRESS => 'info',
             self::PAID => 'primary',
-            self::ENTERED => 'entered',
             self::COMPLETED => 'success',
+            self::FAILED => 'danger',
             self::CANCELLED => 'danger',
         ];
     }

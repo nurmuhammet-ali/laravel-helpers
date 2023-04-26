@@ -14,11 +14,38 @@ class HelpersServiceProvider extends ServiceProvider
 {
 	public function boot(): void
 	{
+        $this->setConfigs();
 		$this->setResponseHelpers();
 		$this->setQueryBuilderHelpers();
 		$this->setAuthorizationHelpers();
+        $this->setRoutes();
 	}
 
+    /**
+     * Set configs for the app
+     *
+     * config('helpers.app')
+     *
+     * @return void
+     */
+    protected function setConfigs(): void
+    {
+        $this->publishes([
+            __DIR__.'/../../config/helpers.php' => config_path('helpers.php'),
+            'helpers-config'
+        ]);
+
+        $this->mergeConfigFrom(__DIR__.'/../../config/helpers.php', 'helpers');
+    }
+
+    /**
+     * Response helpers
+     *
+     * Response::rest()
+     * Response::rest_paginate()
+     *
+     * @return void
+     */
 	protected function setResponseHelpers(): void
 	{
 		/**
@@ -29,7 +56,7 @@ class HelpersServiceProvider extends ServiceProvider
 	     * response()->rest([], 201)
 	     * response()->rest([], 201, 'created resource')
 	     *
-	     * @return void
+	     * @return \Illuminate\Http\JsonResponse
 	     */
 		Response::macro('rest', function (mixed $data = [], int $status_code = 200, string $message = 'success') {
             return response()->json(['message' => $message, 'data' => $data], $status_code);
@@ -41,7 +68,7 @@ class HelpersServiceProvider extends ServiceProvider
 	     * # In method
 	     * response()->rest_paginate(Product::paginate(20))
 	     *
-	     * @return void
+	     * @return \Illuminate\Http\JsonResponse
 	     */
         Response::macro('rest_paginate', function (mixed $data, int $status_code = 200, string $message = 'success') {
             return response()->json([
@@ -57,7 +84,17 @@ class HelpersServiceProvider extends ServiceProvider
         });
 	}
 
-	public function setQueryBuilderHelpers(): void
+    /**
+     * Query builder helpers
+     *
+     * Model::orderByTranslation()
+     * Model::paginateRawQuery()
+     * Model::tableName()
+     * Model::getColumns()
+     *
+     * @return void
+     */
+	protected function setQueryBuilderHelpers(): void
 	{
 		/**
 	     * Provides ordering by translations for spatie translatable 
@@ -130,7 +167,12 @@ class HelpersServiceProvider extends ServiceProvider
 		});
 	}
 
-	public function setAuthorizationHelpers(): void
+    /**
+     * Authorization helpers
+     *
+     * Gate::check('is-me')
+     */
+	protected function setAuthorizationHelpers(): void
 	{
 		/**
 	     * Add gate permission for me
@@ -141,4 +183,12 @@ class HelpersServiceProvider extends ServiceProvider
 	     */
 		Gate::define('is-me', fn ($user) => $user->email == 'nurmuhammet@mail.com');
 	}
+
+    /**
+     * Package Routes
+     */
+    protected function setRoutes(): void
+    {
+        $this->loadRoutesFrom(__DIR__.'/../../routes/helper-routes.php');
+    }
 }

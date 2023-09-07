@@ -57,7 +57,7 @@ Moodel::orderByTranslation($field, $order = 'asc', $locale = null): Illuminate\D
 Post::orderByTranslation()->get()
 
 # Get table name statically for model
-Moodel::tableName(): string
+Model::tableName(): string
 # Example
 Product::tableName() // 'products'
 
